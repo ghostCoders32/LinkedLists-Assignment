@@ -6,12 +6,33 @@ public class DoubleList implements ILinkedList {
 
 
     public static void main(String[] args) {
-        int[] arr = {1,2,3};
         DoubleList x = new DoubleList();
-        x.add(arr);
+        x.add("My");
+        x.add("New");
+        x.add("Linked");
+        x.add("List");
+        x.add("which");
+        x.add("is");
+        x.add("Single");
+        x.add("\t:)");
+        System.out.println(x.toString());
+//        x.add(0,"Its added here");
+//        System.out.println(x.toString());
+//        x.add(2,"Its added here");
+//        System.out.println(x.toString());
+//        x.add(7,"Its added here");
+//        System.out.println(x.toString());
+//        x.add(8,"Its added here");
+//        System.out.println(x.toString());
+        x.add(8,"It is added");
+        System.out.println(x.toString());
+        DoubleList y= (DoubleList) x.sublist(0,4);
 
     }
 
+    public DoubleList() {
+        head=new DNode();
+    }
 
     @Override
     public void add(int index, Object element) {
