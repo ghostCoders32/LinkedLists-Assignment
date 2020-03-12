@@ -160,6 +160,21 @@ public class DoubleList implements ILinkedList {
         return temp;
     }
 
+    @Override
+    public String toString() {
+        String list="{ ";
+        if(isEmpty())
+            throw new NullPointerException("List is empty .");
+        DoubleList.DNode temp=head;
+        while(temp!=null){
+            list+=temp.getElement().toString();
+            list+=" ,";
+            temp=temp.getNext();
+        }
+        list+=" }";
+        return list;
+    }
+
 
     class DNode{//The list's element.
 
