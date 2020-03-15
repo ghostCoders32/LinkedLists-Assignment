@@ -1,4 +1,6 @@
-package seif.com;
+package eg.edu.alexu.csd.datastructure.linkedList;
+
+import eg.edu.alexu.csd.datastructure.linkedList.ILinkedList;
 
 public class SingleLinked implements ILinkedList {
     Node head;
@@ -34,7 +36,7 @@ public class SingleLinked implements ILinkedList {
 
 
     public SingleLinked(){
-        head=new Node();
+        head= new Node();
     }
     //Now the List is initialized.
 
@@ -45,7 +47,7 @@ public class SingleLinked implements ILinkedList {
         if(isEmpty())
             head.setElement(element);
         else{
-            Node temp=new Node();
+            Node temp;
             temp=head;
             while(temp.getNext()!=null){
                 temp=temp.getNext();
@@ -53,9 +55,6 @@ public class SingleLinked implements ILinkedList {
             temp.setNext(new Node());
             temp.getNext().setElement(element);
         }
-
-
-
     }
 
     @Override
@@ -66,7 +65,7 @@ public class SingleLinked implements ILinkedList {
         size++;
         if(index==0){
             //Insert at head.
-            Node temp=new Node();
+            Node temp= new Node();
             temp.setElement(element);
             temp.setNext(head);
             head=temp;
@@ -74,7 +73,7 @@ public class SingleLinked implements ILinkedList {
         }
         Node before=getNode(index-1);
         Node after=getNode(index);
-        Node temp=new Node();
+        Node temp= new Node();
         temp.setElement(element);
         temp.setNext(after);
         before.setNext(temp);
@@ -117,9 +116,7 @@ public class SingleLinked implements ILinkedList {
 
     @Override
     public boolean isEmpty() {
-        if(head.getElement()==null)
-            return true;
-        return false;
+        return head.getElement() == null;
     }
 
     @Override
@@ -138,7 +135,7 @@ public class SingleLinked implements ILinkedList {
         }
         else
             before.setNext(null);
-            //At the end of the list
+        //At the end of the list
     }
 
     @Override
@@ -185,8 +182,15 @@ public class SingleLinked implements ILinkedList {
         list+=" }";
         return list;
     }
+    public boolean hasNext (int x){
+        if(getNode(x).getNext() != null)
+            return true;
+        else
+            return false;
+    }
 
-    class Node{//The list's element.
+
+    static class Node{//The list's element.
 
         private Object element;
         private Node next;
