@@ -1,34 +1,10 @@
 package eg.edu.alexu.csd.datastructure.linkedList;
 
 public class DoubleList implements ILinkedList {
-     int size =0 ;
-     DNode head ;
+    int size =0 ;
+    DNode head ;
 
 
-    public static void main(String[] args) {
-        DoubleList x = new DoubleList();
-        x.add("My");
-        x.add("New");
-        x.add("Linked");
-        x.add("List");
-        x.add("which");
-        x.add("is");
-        x.add("Single");
-        x.add("\t:)");
-        System.out.println(x.toString());
-//        x.add(0,"Its added here");
-//        System.out.println(x.toString());
-//        x.add(2,"Its added here");
-//        System.out.println(x.toString());
-//        x.add(7,"Its added here");
-//        System.out.println(x.toString());
-//        x.add(8,"Its added here");
-//        System.out.println(x.toString());
-        x.add(8,"It is added");
-        System.out.println(x.toString());
-        DoubleList y= (DoubleList) x.sublist(0,4);
-
-    }
 
     public DoubleList() {
         head=new DNode();
@@ -41,16 +17,20 @@ public class DoubleList implements ILinkedList {
         checkIndex(index);
         DNode temp=new DNode() ;
         if (index==0){
-            temp.next=head;
-            head.pervious=temp;
+            temp.setNext(head);
+            head.setPervious(temp);
+            temp.setElement(element);
             head=temp;
-            head.setElement(element);
+            return;
         }
         DNode before =getNode(index-1);
         DNode after = getNode(index);
-        temp.pervious = before;
-        temp.next = after;
+        before.setNext(temp);
+        after.setPervious(temp);
+        temp.setPervious(before);
+        temp.setNext(after);
         temp.setElement(element);
+        return;
     }
 
     @Override
@@ -77,8 +57,8 @@ public class DoubleList implements ILinkedList {
 
     @Override
     public void set(int index, Object element) {
-          checkIndex(index);
-            getNode(index).setElement(element);;
+        checkIndex(index);
+        getNode(index).setElement(element);;
     }
 
     @Override
@@ -102,8 +82,8 @@ public class DoubleList implements ILinkedList {
         if (index==0)
             head= head.getNext();
         else if (index==size-1) {
-           DNode Temp =getNode(index-1);
-           Temp.next =null;
+            DNode Temp =getNode(index-1);
+            Temp.next =null;
         }
         else {
             DNode after = getNode(index + 1);
