@@ -10,6 +10,7 @@ public class Polynomials implements IPolynomialSolver {
 
     @Override
     public void setPolynomial(char poly, int[][] terms) {
+        terms=checkPowers(terms);
         SingleLinked temp = new SingleLinked();
         poly=checkPoly(poly);
         for (int[] term : terms) temp.add(term);
@@ -152,6 +153,7 @@ public class Polynomials implements IPolynomialSolver {
             }
             counter++;
         }
+        R=removeZeros(R);
         return R;
     }
     @Override
@@ -219,6 +221,7 @@ public class Polynomials implements IPolynomialSolver {
             }
             counter++;
         }
+        R=removeZeros(R);
         return R;
     }
 
@@ -328,5 +331,20 @@ public class Polynomials implements IPolynomialSolver {
                 p++;
             }
        return y;
+    }
+
+    public int [][] removeZeros (int [][] x){
+        int l=0,k=0,p=0;
+        for (int i=0;i<x.length;i++) {
+             if(x[i][0]==0&&x[i][1]==0)
+                 k++;
+        }
+        int[][] y=new int[x.length-k][2];
+        while (l<y.length){
+                y[l]=x[p];
+                l++;
+                p++;
+        }
+        return y;
     }
 }
