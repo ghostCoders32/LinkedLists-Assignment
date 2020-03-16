@@ -45,7 +45,7 @@ public class PolynomialsTest {
         x.setPolynomial('A',arr1);
         int[][] arr2 = {{1,2},{2,3}};
         x.setPolynomial('B',arr2);
-        int[][] R = {{3,4},{4,3},{2,2},{0,0},{0,0}};
+        int[][] R = {{3,4},{4,3},{2,2}};
         assertArrayEquals(R,x.add('A','B'));
     }
 
@@ -56,7 +56,7 @@ public class PolynomialsTest {
         x.setPolynomial('A',arr1);
         int[][] arr2 = {{1,2},{2,3}};
         x.setPolynomial('B',arr2);
-        int[][] R = {{3,4},{0,3},{0,2},{0,0},{0,0}};
+        int[][] R = {{3,4},{0,3},{0,2}};
         assertArrayEquals(R,x.subtract('A','B'));
     }
 
