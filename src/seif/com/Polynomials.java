@@ -81,8 +81,8 @@ public class Polynomials implements IPolynomialSolver {
         int[] temp1 ;
         while (temp.hasNext(i)){
             temp1 = (int[]) temp.get(i);
-            ans+=temp1[0]* Math.pow(value,temp1[1]);
-
+            ans+=(float) temp1[0]* Math.pow(value,temp1[1]);
+            i++;
         }
         return ans;
     }
