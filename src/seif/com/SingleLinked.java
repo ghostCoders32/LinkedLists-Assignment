@@ -1,38 +1,9 @@
 package eg.edu.alexu.csd.datastructure.linkedList;
 
-import eg.edu.alexu.csd.datastructure.linkedList.ILinkedList;
 
 public class SingleLinked implements ILinkedList {
-    Node head;
-    int size=0;
-
-    public static void main(String[] args) {
-        SingleLinked x=new SingleLinked();
-        x.add("My");
-        x.add("New");
-        x.add("Linked");
-        x.add("List");
-        x.add("which");
-        x.add("is");
-        x.add("Single");
-        x.add("\t:)");
-        System.out.println(x.toString());
-//        x.add(0,"Its added here");
-//        System.out.println(x.toString());
-//        x.add(2,"Its added here");
-//        System.out.println(x.toString());
-//        x.add(7,"Its added here");
-//        System.out.println(x.toString());
-//        x.add(8,"Its added here");
-//        System.out.println(x.toString());
-        x.add(8,"It is added");
-        System.out.println(x.toString());
-        SingleLinked y= (SingleLinked) x.sublist(0,4);
-
-
-
-    }
-
+    private Node head;
+    private int size=0;
 
 
     public SingleLinked(){
@@ -214,6 +185,5 @@ public class SingleLinked implements ILinkedList {
         }
     }
 }
-
 
 
