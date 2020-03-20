@@ -11,7 +11,6 @@ public class SingleLinked implements ILinkedList {
     }
     //Now the List is initialized.
 
-
     @Override
     public void add(Object element) {
         size++;
