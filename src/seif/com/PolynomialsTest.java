@@ -14,7 +14,7 @@ public class PolynomialsTest {
         int[][] arr = {{1,2},{2,3},{3,4}};
         x.setPolynomial('A',arr);
         s=x.print('A');
-        assertEquals("3x^4+2x^3+x^2",s);
+        assertEquals("3x^4+2x^3+1x^2",s);
 
     }
 
