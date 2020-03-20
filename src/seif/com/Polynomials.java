@@ -3,14 +3,26 @@ package eg.edu.alexu.csd.datastructure.linkedList;
 
 public class Polynomials implements IPolynomialSolver {
 
-    SingleLinked A = new SingleLinked();
-    SingleLinked B = new SingleLinked();
-    SingleLinked C = new SingleLinked();
+    private SingleLinked A=null;
+    private SingleLinked B = null;
+    private SingleLinked C = null;
 
+    public SingleLinked getA() {
+        return A;
+    }
+
+    public SingleLinked getB() {
+        return B;
+    }
+
+    public SingleLinked getC() {
+        return C;
+    }
 
     @Override
     public void setPolynomial(char poly, int[][] terms) {
         terms=checkPowers(terms);
+        terms=removeZeros(terms);
         SingleLinked temp = new SingleLinked();
         poly=checkPoly(poly);
         for (int[] term : terms) temp.add(term);
@@ -39,7 +51,7 @@ public class Polynomials implements IPolynomialSolver {
 
         StringBuilder s = new StringBuilder();
         if(temp.isEmpty())
-            return null;
+            return "0";
         while (i<temp.size()){
             temp1 = (int[]) temp.get(i);
             if (i != 0) {
@@ -47,7 +59,9 @@ public class Polynomials implements IPolynomialSolver {
                 } else
                     s.append("+");
             }
-            if (temp1[0] == 1 || temp1[0] == 0){}
+            if (temp1[0] == 1 || temp1[0] == 0){
+                s.append("1");
+            }
             else s.append(temp1[0]);
             if (temp1[1] == 0){}
             else s.append("x^").append(temp1[1]);
@@ -61,11 +75,11 @@ public class Polynomials implements IPolynomialSolver {
     public void clearPolynomial(char poly) {
         poly=checkPoly(poly);
         if(poly == 'A')
-            A.clear();
+            A=null;
         else if (poly=='B')
-            B.clear();
+            B=null;
         else
-            C.clear();
+            C=null;
     }
 
     @Override
@@ -104,19 +118,9 @@ public class Polynomials implements IPolynomialSolver {
             case 'B':polynomial2=B;break;
             case 'C':polynomial2=C;break;
         }
-        if(polynomial1==null) {
-            System.out.println(poly1 + " is not set.");
-            return null;
-        }
-        if(polynomial2==null) {
-            System.out.println(poly2 + " is not set.");
-            return null;
-        }
         if(polynomial1.size()==0&&polynomial2.size()==0) {
-            System.out.println("We are here");
             return new int[][]{};
         }
-
         int[][] R=new int[polynomial1.size()+polynomial2.size()][2];
         int counter=0,i=0,j=0;
         while(i<polynomial1.size()||j<polynomial2.size()){
@@ -171,14 +175,6 @@ public class Polynomials implements IPolynomialSolver {
             case 'A':polynomial2=A;break;
             case 'B':polynomial2=B;break;
             case 'C':polynomial2=C;break;
-        }
-        if(polynomial1==null) {
-            System.out.println(poly1 + " is not set.");
-            return null;
-        }
-        if(polynomial2==null) {
-            System.out.println(poly2 + " is not set.");
-            return null;
         }
         if(polynomial1.size()==0&&polynomial2.size()==0)
             return new int[][]{};
@@ -247,14 +243,6 @@ public class Polynomials implements IPolynomialSolver {
             case 'C':
                 polynomial2 = C;break;
         }
-        if (polynomial1 == null) {
-            System.out.println(poly1 + " is not set.");
-            return null;
-        }
-        if (polynomial2 == null) {
-            System.out.println(poly2 + " is not set.");
-            return null;
-        }
         if (polynomial1.size() == 0)
             return new int[][]{};
         else if (polynomial2.size() == 0)
@@ -296,7 +284,6 @@ public class Polynomials implements IPolynomialSolver {
 
     }
     public ILinkedList sortList(ILinkedList x){
-        System.out.println("size is "+x.size());
         for(int i=0;i<x.size();i++) {
             for (int j = 0; j < (x.size()- 1); j++) {
                 int[] temp1 = (int[]) x.get(j);
@@ -313,37 +300,41 @@ public class Polynomials implements IPolynomialSolver {
 
     public int [][] checkPowers (int [][] x){
         int l=0,k=0,p=0;
+        for(int i=0;i<x.length;i++){
+            if(x[i][0]==0)
+                x[i][1]=0;
+        }
         for (int i=0;i<x.length;i++) {
             for (int j = i + 1; j < x.length; j++) {
-                if (x[i][1] == x[j][1]) {
+                if (x[i][1] == x[j][1]&&x[i][1]!=-98989) {
                     x[j][1] = -98989;
                     x[i][0] = x[i][0] + x[j][0];
                     k++;
                 }
             }
         }
-            int[][] y=new int[x.length-k][2];
-            while (l<y.length){
-                if (x[p][1]!=-98989){
-                    y[l]=x[p];
-                    l++;
-                }
-                p++;
+        int[][] y=new int[x.length-k][2];
+        while (l<y.length){
+            if (x[p][1]!=-98989){
+                y[l]=x[p];
+                l++;
             }
-       return y;
+            p++;
+        }
+        return y;
     }
 
     public int [][] removeZeros (int [][] x){
         int l=0,k=0,p=0;
         for (int i=0;i<x.length;i++) {
-             if(x[i][0]==0&&x[i][1]==0)
-                 k++;
+            if(x[i][0]==0&&x[i][1]==0)
+                k++;
         }
         int[][] y=new int[x.length-k][2];
         while (l<y.length){
-                y[l]=x[p];
-                l++;
-                p++;
+            y[l]=x[p];
+            l++;
+            p++;
         }
         return y;
     }
