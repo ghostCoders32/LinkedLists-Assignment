@@ -101,7 +101,7 @@ public class SingleLinkedTest {
         // Now to make sure of what element i take
         assertEquals("My",B.get(0));
         try {
-           B= A.sublist(2,1);
+            B= A.sublist(2,1);
             assertEquals("ArithmeticException",B.get(0));
         }catch (ArithmeticException r){
             System.out.println(r.toString());
